@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Available Twitch chat commands for TurtleKing_6."
+    >
+
+    <meta name="theme-color" content="#071a1c">
+
+    <title>TurtleKing_6 Commands</title>
+
+    <style>
+        :root {
+            color-scheme: dark;
+
+            --background: #061719;
+            --background-soft: #0a2225;
+            --surface: rgba(13, 41, 44, 0.92);
+            --surface-strong: #103236;
+            --surface-hover: #153e42;
+
+            --border: rgba(78, 167, 174, 0.32);
+            --border-strong: rgba(97, 230, 220, 0.66);
+
+            --text: #f4ffff;
+            --muted: #a7c8cb;
+            --muted-dark: #769da0;
+
+            --accent: #61e6dc;
+            --accent-bright: #8ffff7;
+            --accent-dark: #2ea9a1;
+
+            --permission: #ffd86b;
+            --success: #77efab;
+
+            --shadow:
+                0 22px 60px
+                rgba(0, 0, 0, 0.34);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 20% -10%,
+                    rgba(34, 130, 136, 0.38),
+                    transparent 38%
+                ),
+                radial-gradient(
+                    circle at 90% 0%,
+                    rgba(27, 91, 98, 0.28),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    180deg,
+                    #092326 0%,
+                    var(--background) 52%
+                );
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            color: inherit;
+        }
+
+        .background-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+
+            opacity: 0.18;
+
+            background-image:
+                linear-gradient(
+                    rgba(97, 230, 220, 0.07) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(97, 230, 220, 0.07) 1px,
+                    transparent 1px
+                );
+
+            background-size: 42px 42px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 72%
+                );
+        }
+
+        .page-shell {
+            width: min(1160px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 40px 0 72px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            padding: clamp(26px, 5vw, 48px);
+
+            border: 1px solid var(--border);
+            border-radius: 26px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(19, 61, 65, 0.97),
+                    rgba(7, 27, 30, 0.97)
+                );
+
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 310px;
+            height: 310px;
+            right: -100px;
+            top: -130px;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(97, 230, 220, 0.28),
+                    transparent 68%
+                );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .brand-icon {
+            display: grid;
+            place-items: center;
+
+            width: 46px;
+            height: 46px;
+
+            border: 1px solid var(--border-strong);
+            border-radius: 14px;
+
+            background:
+                rgba(4, 23, 25, 0.7);
+
+            font-size: 1.45rem;
+        }
+
+        .eyebrow {
+            margin: 0;
+
+            color: var(--accent);
+            font-size: 0.76rem;
+            font-weight: 850;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .brand-subtitle {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        h1 {
+            max-width: 900px;
+            margin: 0;
+
+            font-size:
+                clamp(2.35rem, 7vw, 4.85rem);
+
+            line-height: 0.98;
+            letter-spacing: -0.045em;
+        }
+
+        .title-accent {
+            color: var(--accent-bright);
+        }
+
+        .description {
+            max-width: 760px;
+            margin: 22px 0 0;
+
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.12rem);
+            line-height: 1.7;
+        }
+
+        .summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .summary-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 9px 13px;
+
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+            color: var(--muted);
+
+            background:
+                rgba(4, 23, 25, 0.58);
+
+            font-size: 0.88rem;
+        }
+
+        .summary-pill strong {
+            color: var(--text);
+        }
+
+        .controls {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+
+            margin-top: 20px;
+            padding: 14px 0;
+
+            backdrop-filter: blur(16px);
+        }
+
+        .controls-panel {
+            padding: 14px;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            background:
+                rgba(6, 23, 25, 0.91);
+
+            box-shadow:
+                0 14px 34px
+                rgba(0, 0, 0, 0.19);
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        #command-search {
+            width: 100%;
+            min-width: 0;
+
+            padding: 15px 17px;
+
+            border: 1px solid var(--border);
+            border-radius: 13px;
+
+            color: var(--text);
+
+            background:
+                rgba(13, 41, 44, 0.86);
+
+            outline: none;
+        }
+
+        #command-search::placeholder {
+            color: var(--muted-dark);
+        }
+
+        #command-search:focus {
+            border-color: var(--accent);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(97, 230, 220, 0.13);
+        }
+
+        .clear-button {
+            flex: 0 0 auto;
+            padding: 0 16px;
+
+            border: 1px solid var(--border);
+            border-radius: 13px;
+
+            background: var(--surface);
+            cursor: pointer;
+        }
+
+        .clear-button:hover {
+            border-color: var(--accent-dark);
+            background: var(--surface-hover);
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            padding-bottom: 2px;
+
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .filter-button {
+            flex: 0 0 auto;
+
+            padding: 8px 12px;
+
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+            color: var(--muted);
+
+            background:
+                rgba(13, 41, 44, 0.72);
+
+            cursor: pointer;
+        }
+
+        .filter-button:hover {
+            color: var(--text);
+            border-color: var(--accent-dark);
+        }
+
+        .filter-button.active {
+            color: #041a1c;
+            border-color: var(--accent);
+            background: var(--accent);
+            font-weight: 800;
+        }
+
+        .results-line {
+            margin: 10px 3px 0;
+            color: var(--muted-dark);
+            font-size: 0.82rem;
+        }
+
+        .category {
+            margin-top: 34px;
+        }
+
+        .category-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 16px;
+
+            margin-bottom: 13px;
+        }
+
+        .category-heading h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .category-count {
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .command-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(285px, 1fr)
+                );
+
+            gap: 14px;
+        }
+
+        .command-card {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 205px;
+            padding: 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    160deg,
+                    rgba(16, 50, 54, 0.98),
+                    rgba(10, 34, 37, 0.96)
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(0, 0, 0, 0.16);
+
+            transition:
+                transform 160ms ease,
+                background 160ms ease,
+                border-color 160ms ease,
+                box-shadow 160ms ease;
+        }
+
+        .command-card:hover {
+            transform: translateY(-3px);
+
+            border-color: var(--accent-dark);
+
+            background:
+                linear-gradient(
+                    160deg,
+                    rgba(21, 65, 70, 0.99),
+                    rgba(12, 40, 43, 0.98)
+                );
+
+            box-shadow:
+                0 18px 34px
+                rgba(0, 0, 0, 0.24);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .command-name {
+            margin: 0;
+
+            color: var(--accent);
+
+            font-family:
+                Consolas,
+                "Cascadia Code",
+                monospace;
+
+            font-size: 1.2rem;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
+        .copy-button {
+            flex: 0 0 auto;
+
+            padding: 7px 10px;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            color: var(--muted);
+
+            background:
+                rgba(4, 23, 25, 0.62);
+
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            color: var(--text);
+            border-color: var(--accent-dark);
+        }
+
+        .copy-button.copied {
+            color: #05231a;
+            border-color: var(--success);
+            background: var(--success);
+        }
+
+        .command-response {
+            flex: 1;
+
+            margin: 15px 0 18px;
+
+            color: var(--text);
+            line-height: 1.58;
+            overflow-wrap: anywhere;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .metadata span {
+            padding: 6px 9px;
+
+            border-radius: 999px;
+
+            color: var(--muted);
+
+            background:
+                rgba(4, 23, 25, 0.63);
+
+            font-size: 0.76rem;
+        }
+
+        .metadata .permission {
+            color: var(--permission);
+        }
+
+        .aliases {
+            margin-top: 12px;
+
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+
+        .empty-state,
+        .no-results {
+            margin-top: 32px;
+            padding: 44px 24px;
+
+            border: 1px dashed var(--border);
+            border-radius: 20px;
+
+            text-align: center;
+
+            background:
+                rgba(13, 41, 44, 0.65);
+        }
+
+        .empty-icon {
+            margin-bottom: 10px;
+            font-size: 2.4rem;
+        }
+
+        .empty-state h2,
+        .no-results h2 {
+            margin: 0;
+        }
+
+        .empty-state p,
+        .no-results p {
+            max-width: 560px;
+            margin: 12px auto 0;
+
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 54px;
+            padding-top: 22px;
+
+            border-top:
+                1px solid
+                rgba(78, 167, 174, 0.18);
+
+            color: var(--muted-dark);
+            text-align: center;
+            font-size: 0.82rem;
+            line-height: 1.7;
+        }
+
+        footer strong {
+            color: var(--muted);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 680px) {
+            .page-shell {
+                width: min(100% - 20px, 1160px);
+                padding-top: 16px;
+            }
+
+            .hero {
+                border-radius: 21px;
+            }
+
+            .brand-row {
+                align-items: flex-start;
+            }
+
+            .search-row {
+                flex-direction: column;
+            }
+
+            .clear-button {
+                min-height: 44px;
+            }
+
+            .controls {
+                top: -1px;
+            }
+
+            .category-heading {
+                align-items: baseline;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-grid"></div>
+
+    <main class="page-shell">
+        <header class="hero">
+            <div class="hero-content">
+                <div class="brand-row">
+                    <div class="brand-icon" aria-hidden="true">
+                        🐢
+                    </div>
+
+                    <div>
+                        <p class="eyebrow">
+                            TurtleOS Command Directory
+                        </p>
+
+                        <p class="brand-subtitle">
+                            Local-first stream automation
+                        </p>
+                    </div>
+                </div>
+
+                <h1>
+                    TurtleKing_6 Commands
+                    <span class="title-accent">.</span>
+                </h1>
+
+                <p class="description">
+                    Available Twitch chat commands for TurtleKing_6.
+                </p>
+
+                <div class="summary">
+                    <span class="summary-pill">
+                        Channel:
+                        <strong>TurtleKing_6</strong>
+                    </span>
+
+                    <span class="summary-pill">
+                        <strong id="public-command-count">
+                            1
+                        </strong>
+                        public command(s)
+                    </span>
+
+                    <span class="summary-pill">
+                        <strong>1</strong>
+                        category/categories
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <section class="controls">
+            <div class="controls-panel">
+                <div class="search-row">
+                    <input
+                        id="command-search"
+                        type="search"
+                        placeholder="Search commands, responses, aliases, or categories"
+                        aria-label="Search commands"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        class="clear-button"
+                        id="clear-search"
+                        type="button"
+                    >
+                        Clear
+                    </button>
+                </div>
+
+                <div
+                    class="category-filters"
+                    aria-label="Command categories"
+                >
+                    <button
+                        class="filter-button active"
+                        type="button"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+                    
+                <button
+                    class="filter-button"
+                    type="button"
+                    data-filter="general"
+                >
+                    General (1)
+                </button>
+                
+                </div>
+
+                <div
+                    class="results-line"
+                    id="results-line"
+                >
+                    Showing 1 command(s)
+                </div>
+            </div>
+        </section>
+
+        <div id="command-directory">
+            
+        <section
+            class="category"
+            data-category="general"
+        >
+            <div class="category-heading">
+                <h2>General</h2>
+
+                <span class="category-count">
+                    1 command(s)
+                </span>
+            </div>
+
+            <div class="command-grid">
+                
+        <article
+            class="command-card"
+            data-category="general"
+            data-search="hello Hello $(display_name), welcome to the stream! General everyone "
+        >
+            <div class="card-header">
+                <h3 class="command-name">
+                    !hello
+                </h3>
+
+                <button
+                    class="copy-button"
+                    type="button"
+                    data-command="!hello"
+                    aria-label="Copy !hello"
+                >
+                    Copy
+                </button>
+            </div>
+
+            <p class="command-response">
+                Hello $(display_name), welcome to the stream!
+            </p>
+
+            <div class="metadata">
+                <span>General</span>
+
+                <span class="permission">
+                    everyone
+                </span>
+
+                <span>10s cooldown</span>
+            </div>
+
+            
+        </article>
+        
+            </div>
+        </section>
+        
+        </div>
+
+        <section
+            class="no-results hidden"
+            id="no-results"
+        >
+            <div class="empty-icon">🔎</div>
+            <h2>No matching commands</h2>
+            <p>
+                Try another search term or select a different category.
+            </p>
+        </section>
+
+        <footer>
+            <strong>TurtleOS</strong><br>
+            Generated locally on July 14, 2026 at 05:06 PM.<br>
+            Command information updates automatically when commands change.
+        </footer>
+    </main>
+
+    <script>
+        const availableCategories = ["General"];
+
+        const searchInput = document.getElementById(
+            "command-search"
+        );
+
+        const clearButton = document.getElementById(
+            "clear-search"
+        );
+
+        const resultsLine = document.getElementById(
+            "results-line"
+        );
+
+        const noResults = document.getElementById(
+            "no-results"
+        );
+
+        const commandCards = Array.from(
+            document.querySelectorAll(
+                ".command-card"
+            )
+        );
+
+        const categorySections = Array.from(
+            document.querySelectorAll(
+                ".category"
+            )
+        );
+
+        const filterButtons = Array.from(
+            document.querySelectorAll(
+                ".filter-button"
+            )
+        );
+
+        const copyButtons = Array.from(
+            document.querySelectorAll(
+                ".copy-button"
+            )
+        );
+
+        let selectedCategory = "all";
+
+        function updateDirectory() {
+            const query = searchInput.value
+                .trim()
+                .toLowerCase();
+
+            let visibleCommandCount = 0;
+
+            commandCards.forEach((card) => {
+                const searchText = (
+                    card.dataset.search || ""
+                ).toLowerCase();
+
+                const cardCategory = (
+                    card.dataset.category || ""
+                ).toLowerCase();
+
+                const matchesSearch =
+                    !query || searchText.includes(query);
+
+                const matchesCategory =
+                    selectedCategory === "all"
+                    || cardCategory === selectedCategory;
+
+                const isVisible =
+                    matchesSearch && matchesCategory;
+
+                card.classList.toggle(
+                    "hidden",
+                    !isVisible
+                );
+
+                if (isVisible) {
+                    visibleCommandCount += 1;
+                }
+            });
+
+            categorySections.forEach((section) => {
+                const visibleCards =
+                    section.querySelectorAll(
+                        ".command-card:not(.hidden)"
+                    );
+
+                section.classList.toggle(
+                    "hidden",
+                    visibleCards.length === 0
+                );
+            });
+
+            noResults.classList.toggle(
+                "hidden",
+                visibleCommandCount !== 0
+            );
+
+            resultsLine.textContent =
+                `Showing ${visibleCommandCount} command(s)`;
+        }
+
+        searchInput.addEventListener(
+            "input",
+            updateDirectory
+        );
+
+        clearButton.addEventListener(
+            "click",
+            () => {
+                searchInput.value = "";
+                selectedCategory = "all";
+
+                filterButtons.forEach((button) => {
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.filter === "all"
+                    );
+                });
+
+                updateDirectory();
+                searchInput.focus();
+            }
+        );
+
+        filterButtons.forEach((button) => {
+            button.addEventListener(
+                "click",
+                () => {
+                    selectedCategory =
+                        button.dataset.filter || "all";
+
+                    filterButtons.forEach(
+                        (otherButton) => {
+                            otherButton.classList.toggle(
+                                "active",
+                                otherButton === button
+                            );
+                        }
+                    );
+
+                    updateDirectory();
+                }
+            );
+        });
+
+        copyButtons.forEach((button) => {
+            button.addEventListener(
+                "click",
+                async () => {
+                    const command =
+                        button.dataset.command || "";
+
+                    if (!command) {
+                        return;
+                    }
+
+                    try {
+                        await navigator.clipboard.writeText(
+                            command
+                        );
+
+                        button.textContent = "Copied";
+                        button.classList.add("copied");
+
+                        window.setTimeout(
+                            () => {
+                                button.textContent = "Copy";
+                                button.classList.remove(
+                                    "copied"
+                                );
+                            },
+                            1400
+                        );
+                    } catch (error) {
+                        button.textContent = command;
+                    }
+                }
+            );
+        });
+
+        updateDirectory();
+    </script>
+</body>
+</html>
