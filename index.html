@@ -681,7 +681,7 @@
 
                     <span class="summary-pill">
                         <strong id="public-command-count">
-                            23
+                            24
                         </strong>
                         public command(s)
                     </span>
@@ -732,7 +732,7 @@
                     type="button"
                     data-filter="general"
                 >
-                    General (23)
+                    General (24)
                 </button>
                 
                 </div>
@@ -741,7 +741,7 @@
                     class="results-line"
                     id="results-line"
                 >
-                    Showing 23 command(s)
+                    Showing 24 command(s)
                 </div>
             </div>
         </section>
@@ -756,7 +756,7 @@
                 <h2>General</h2>
 
                 <span class="category-count">
-                    23 command(s)
+                    24 command(s)
                 </span>
             </div>
 
@@ -1533,7 +1533,45 @@
         <article
             class="command-card"
             data-category="general"
-            data-search="test Streamer: {streamer} | Live: {is_live} | Title: {title} General everyone "
+            data-search="subs Turtle currently has {twitch.subs.total} Subscribers! General everyone "
+        >
+            <div class="card-header">
+                <h3 class="command-name">
+                    !subs
+                </h3>
+
+                <button
+                    class="copy-button"
+                    type="button"
+                    data-command="!subs"
+                    aria-label="Copy !subs"
+                >
+                    Copy
+                </button>
+            </div>
+
+            <p class="command-response">
+                Turtle currently has {twitch.subs.total} Subscribers!
+            </p>
+
+            <div class="metadata">
+                <span>General</span>
+
+                <span class="permission">
+                    everyone
+                </span>
+
+                <span>10s cooldown</span>
+            </div>
+
+            
+        </article>
+        
+
+        <article
+            class="command-card"
+            data-category="general"
+            data-search="test Streamer: {streamer} | Live: {is_live} | Title: {title} | Game: {game} | Uptime: {uptime} | Viewers: {viewer_count} General everyone !tested, !tester, !testing"
         >
             <div class="card-header">
                 <h3 class="command-name">
@@ -1551,7 +1589,7 @@
             </div>
 
             <p class="command-response">
-                Streamer: {streamer} | Live: {is_live} | Title: {title}
+                Streamer: {streamer} | Live: {is_live} | Title: {title} | Game: {game} | Uptime: {uptime} | Viewers: {viewer_count}
             </p>
 
             <div class="metadata">
@@ -1564,6 +1602,10 @@
                 <span>10s cooldown</span>
             </div>
 
+            
+            <div class="aliases">
+                Aliases: !tested, !tester, !testing
+            </div>
             
         </article>
         
@@ -1661,7 +1703,7 @@
 
         <footer>
             <strong>TurtleOS</strong><br>
-            Generated locally on July 18, 2026 at 01:33 PM.<br>
+            Generated locally on July 18, 2026 at 04:38 PM.<br>
             Command information updates automatically when commands change.
         </footer>
     </main>
